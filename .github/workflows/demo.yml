@@ -10,4 +10,6 @@ jobs:
 
     steps:
     - name: testing
-      run: echo ${{github.run_number}}
+      run: |
+        echo ${{github.run_number}}
+        echo ${{github.run_attempt}}
