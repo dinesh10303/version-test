@@ -1,0 +1,13 @@
+name: test
+
+on:
+ push: 
+  branches: [feature/*]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: testing
+      run: echo ${{github.run_number}}
