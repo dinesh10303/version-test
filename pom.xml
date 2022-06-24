@@ -8,8 +8,9 @@
 		<version>2.2.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.lister</groupId>
+
 	<artifactId>demo</artifactId>
+	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>sample</name>
 	<description>DevOps project for Spring Boot</description>
