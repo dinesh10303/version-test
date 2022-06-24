@@ -14,3 +14,4 @@ jobs:
         echo ${{github.run_number}}
         echo ${{github.run_attempt}}
         echo "hello"
+        echo "world"
