@@ -11,7 +11,5 @@ jobs:
     steps:
     - name: testing
       run: |
-        echo ${{github.run_number}}
-        echo ${{github.run_attempt}}
-        echo "hello"
-        echo "world"
+        VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
+        echo $VERSION
