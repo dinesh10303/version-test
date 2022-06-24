@@ -5,8 +5,7 @@ on:
   branches: [feature/*]
 
 jobs:
-  get-version:
-    name: getting artifact version
+  artifact-version:
     runs-on: ubuntu-latest
     
     steps:
@@ -15,5 +14,31 @@ jobs:
     - name: Get Version
       uses: entimaniac/read-pom-version-action@1.0.0
       id: getVersion
-    - name: Print the version
-      run: echo "The version we just got is ${{ steps.getVersion.outputs.version }}"
+    
+    - name: run_number
+      run: echo ${{github.run_number}}
+
+    outputs:
+      version: ${{ steps.getVersion.outputs.version }}
+  
+  test:
+    needs: artifact-version
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+    - name: testing
+      run: |
+        echo ${{ needs.artifact-version.outputs.version }}
+        echo ${{github.run_number}}
+
+  sample:
+    needs: [test,artifact-version]
+    runs-on: ubuntu-latest
+    environment: sample
+    steps:
+    - name: testing
+      run: |
+        echo ${{ needs.artifact-version.outputs.version }}
+        echo ${{github.run_number}}
+
+    
