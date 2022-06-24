@@ -5,11 +5,15 @@ on:
   branches: [feature/*]
 
 jobs:
-  test:
+  get-version:
+    name: getting artifact version
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: testing
-      run: |
-        VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-        echo $VERSION
+    - uses: actions/checkout@v3
+    
+    - name: Get Version
+      uses: entimaniac/read-pom-version-action@1.0.0
+      id: getVersion
+    - name: Print the version
+      run: echo "The version we just got is ${{ steps.getVersion.outputs.version }}"
