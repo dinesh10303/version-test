@@ -16,7 +16,7 @@ jobs:
       id: getVersion
     
     - name: run_number
-      run: echo ${{github.run_number}}
+      run: echo v${{github.run_number}}
 
     outputs:
       version: ${{ steps.getVersion.outputs.version }}
