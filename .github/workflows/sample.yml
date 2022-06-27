@@ -26,11 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: test
     steps:
-    - name: testing
-      run: |
-        echo ${{ needs.artifact-version.outputs.version }}
-        echo ${{github.run_number}}
-
+    - name: Get Version
+      uses: entimaniac/read-pom-version-action@1.0.0
+      id: getVersion
+  
   sample:
     needs: [test,artifact-version]
     runs-on: ubuntu-latest
