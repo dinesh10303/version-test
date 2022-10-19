@@ -10,7 +10,20 @@ jobs:
 
     steps:
     - run: |
-        echo "x=$(echo ${{ github.ref_name }} | awk -F 'release_' '{print $2}')" >> $GITHUB_ENV
-        echo $x
+        echo "version=$(echo ${{ github.ref_name }} | awk -F 'release_' '{print $2}')" >> $GITHUB_ENV
+        echo "version=$(echo ${{ github.ref_name }} | awk -F 'release_' '{print $2}')" >> $GITHUB_OUTPUT
+      id: version
     - name: testing 
-      run: echo $x
+      run: echo $version
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      
+  output-test:
+  
+    runs-on: ubuntu-latest
+    needs: release-test
+    env:
+      version: ${{needs.release-test.outputs.version}}
+    steps:
+    - run: echo $version
+    
