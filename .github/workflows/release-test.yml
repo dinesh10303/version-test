@@ -11,6 +11,6 @@ jobs:
     steps:
     - run: |
         x=$(echo ${{ github.ref_name }} | awk -F 'release_' '{print $2}')
-        echo $x
+        echo $x >> $GITHUB_ENV
     - name: testing 
       run: echo $x
