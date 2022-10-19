@@ -12,3 +12,5 @@ jobs:
     - run: |
         x=$(echo ${{ github.ref_name }} | awk -F 'release_' '{print $2}')
         echo $x
+    - name: testing 
+      run: echo $x
