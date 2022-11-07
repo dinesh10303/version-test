@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-	      description: Rollback Version
+	 description: Rollback Version
        
 
 jobs:
@@ -15,10 +15,10 @@ jobs:
     steps:
 
     - if: ${{ github.event.inputs.version != '' }}
-	    name: rollback to given input version
+      name: rollback to given input version
       run: echo ${{ github.event.inputs.version }}
 
     - if: ${{ github.event.inputs.version == '' }}
-	    name: rollback to previous version
+      name: rollback to previous version
       run: echo "rollback to previous version"
        
