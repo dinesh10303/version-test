@@ -1,10 +1,10 @@
 name: rollback
 
-on:
+on: 
   workflow_dispatch:
     inputs:
       version:
-	 description: Rollback Version
+        description: 'Rollback version'  
        
 
 jobs:
