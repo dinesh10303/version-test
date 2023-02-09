@@ -19,15 +19,4 @@ jobs:
           head: ${{ github.ref }}
           base: main
           title: "An automatically created PR!"
-      
-      - name: Approve Pull Request
-        uses: juliangruber/approve-pull-request-action@v2.0.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.demo.outputs.number }}
-	    
-      - name: Merge Pull Request
-    	  uses: juliangruber/merge-pull-request-action@v1
-    	  with:
-      	  github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.demo.outputs.number }}
+
