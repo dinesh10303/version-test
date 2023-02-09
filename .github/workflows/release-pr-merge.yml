@@ -1,7 +1,8 @@
 name: "pr-merge"
 
 on:
- workflow_dispatch:
+  release:
+    types: [published]
 
 jobs:
   auto-pr-merge-tagging:
@@ -16,7 +17,7 @@ jobs:
         uses: thomaseizinger/create-pull-request@master
         with:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-          head: ${{ github.ref }}
+          head: feature/new
           base: main
           title: "An automatically created PR!"
           
