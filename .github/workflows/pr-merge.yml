@@ -1,0 +1,27 @@
+name: "pr-merge"
+
+on:
+ workflow_dispatch:
+
+jobs:
+  auto-pr-merge-tagging:
+    name: "merging and tagging"
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: create pull request
+        id: demo
+        uses: thomaseizinger/create-pull-request@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          head: ${{ github.ref }}
+          base: main
+          title: "An automatically created PR!"
+          
+      - name: Merge pull request
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.TOKEN }}
+          number: ${{ steps.demo.outputs.number }}
