@@ -1,0 +1,15 @@
+name: test
+
+on:
+ push: 
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: testing
+      run: |
+        echo ${{github.run_number}}
+        echo ${{github.run_attempt}}
