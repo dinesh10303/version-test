@@ -1,0 +1,36 @@
+name: rollback
+
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Rollback version'
+      env:
+        type: choice
+        description: 'Environment'
+        required: true
+        options: 
+        - stg
+        - prod
+       
+
+jobs:
+  rollback:
+    name: rollback to previous version
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.env }}
+    
+    steps:
+
+    - if: ${{ github.event.inputs.version != '' }}
+      name: rollback to given input version
+      run: |
+        echo ${{ github.event.inputs.version }}
+        echo ${{ github.event.inputs.env }}
+
+    - if: ${{ github.event.inputs.version == '' }}
+      name: rollback to previous version
+      run: |
+        echo "rollback to previous version"
+        echo ${{ github.event.inputs.env }}
+       
