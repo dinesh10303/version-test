@@ -4,9 +4,10 @@ on:
  workflow_dispatch:
 
 jobs:
-  auto pr merge and tagging:
+  auto-pr-merge-tagging:
     name: "merging and tagging"
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v2
       
@@ -24,13 +25,6 @@ jobs:
         with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             number: ${{ steps.demo.outputs.number }}
-
-      - name: Merge Pull Request
-        uses: juliangruber/merge-pull-request-action@v1
-        with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            number: ${{ steps.demo.outputs.number }}
-            method: squash
 
 
 
