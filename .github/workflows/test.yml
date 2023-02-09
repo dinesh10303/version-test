@@ -13,4 +13,3 @@ jobs:
       run: |
         echo ${{github.run_number}}
         echo ${{github.run_attempt}}
-        echo ${{ github.ref_name }}
