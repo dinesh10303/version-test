@@ -20,7 +20,8 @@ jobs:
           base: main
           title: "An automatically created PR!"
           
-      - name: Merge pull request
+      - if: ${{ steps.demo.outputs.created == 'true' }}
+        name: Merge pull request
         uses: juliangruber/merge-pull-request-action@v1
         with:
           github-token: ${{ secrets.TOKEN }}
