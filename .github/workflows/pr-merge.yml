@@ -1,4 +1,4 @@
-name: "release to main automatic merging and tagging"
+name: "pr-merge"
 
 on:
  workflow_dispatch:
