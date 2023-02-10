@@ -1,4 +1,4 @@
-name: "pr-merge"
+name: "auto-release"
 
 on:
  push:
@@ -14,4 +14,5 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           tag: v1.0.4
+          token: ${{ secrets.TOKEN }}
           
