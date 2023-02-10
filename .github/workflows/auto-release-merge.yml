@@ -1,0 +1,36 @@
+name: "auto release and merging"
+
+on:
+ push:
+  branches: feature/*
+
+jobs:
+  auto-release-merging:
+    name: "release and merging"
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: creating release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: v1.0.5
+          token: ${{ secrets.TOKEN }}
+      
+      - name: create pull request
+        id: demo
+        uses: thomaseizinger/create-pull-request@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          head: feature/new
+          base: main
+          title: "An automatically created PR!"
+          
+      - if: ${{ steps.demo.outputs.created == 'true' }}
+        name: Merge pull request
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.TOKEN }}
+          number: ${{ steps.demo.outputs.number }}
+          
