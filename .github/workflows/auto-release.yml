@@ -1,0 +1,17 @@
+name: "pr-merge"
+
+on:
+ push:
+  branches: feature/*
+
+jobs:
+  auto-pr-merge-tagging:
+    name: "merging and tagging"
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ncipollo/release-action@v1
+        with:
+          tag: v1.0.4
+          
