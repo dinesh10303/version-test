@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
       - name: Create release branch
         run: git checkout -b release/${{ github.event.inputs.version }}
@@ -26,9 +29,9 @@ jobs:
       # You may choose to write something less generic here if you want, it doesn't matter functionality wise.
       - name: Initialize mandatory git config
         run: |
-          git config user.name dinesh10303
-          git config user.email avuladineshreddy@gmail.com
-          git config user.password ${{ secrets.TOKEN }}
+          git config --local user.name dinesh10303
+          git config --local user.email avuladineshreddy@gmail.com
+       
 
       # This step will differ depending on your project setup
       # Fortunately, yarn has a built-in command for doing this!
