@@ -28,9 +28,13 @@ jobs:
       # In order to make a commit, we need to initialize a user.
       # You may choose to write something less generic here if you want, it doesn't matter functionality wise.
       - name: Initialize mandatory git config
-        run: |
-          git config --local user.name dinesh10303
-          git config --local user.email avuladineshreddy@gmail.com
+        run: |            
+           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+           git config --local user.name "github-actions[bot]"
+
+#          git config --local user.name dinesh10303
+#          git config --local user.email avuladineshreddy@gmail.com
+
        
 
       # This step will differ depending on your project setup
@@ -46,9 +50,15 @@ jobs:
           git commit --message "Prepare release ${{ github.event.inputs.version }}"
           echo "::set-output name=commit::$(git rev-parse HEAD)"
 #          git add CHANGELOG.md 
-      - name: Push new branch
-        run: git push origin release/${{ github.event.inputs.version }}
+#      - name: Push new branch
+#        run: git push origin release/${{ github.event.inputs.version }}
 
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release/${{ github.event.inputs.version }}
+      
       - name: Create pull request
         uses: thomaseizinger/create-pull-request@1.0.0
         env:
