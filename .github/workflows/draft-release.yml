@@ -27,7 +27,7 @@ jobs:
       - name: Initialize mandatory git config
         run: |
           git config user.name "dinesh10303"
-          git config user.email "avuladineshreddy@gmail.com"
+          git config user.password ${{ secrets.TOKEN }}
 
       # This step will differ depending on your project setup
       # Fortunately, yarn has a built-in command for doing this!
