@@ -14,7 +14,6 @@ jobs:
     - name: testing
       run: |
         echo ${{github.run_number}}
-        echo ${{github.run_attempt}}
-        
+        echo ${{github.run_attempt}}   
         curl -u dinesh.reddy@chicos.com:Akshaya@10303 -X POST -H "X-Atlassian-Token: nocheck" -F "file=@pom.xml" -F "comment=File attached via REST API" https://chicosfas.atlassian.net/wiki/rest/api/content/2669609130/child/attachment 2>/dev/null | jq -r '.results[].title'
 
