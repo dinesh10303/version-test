@@ -1,0 +1,31 @@
+name: merge-test
+
+on:
+ push:
+  branches: feature/*
+
+jobs:
+ auto-merge-main:
+    name: merge-test
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: create pull request
+        id: PR
+        uses: thomaseizinger/create-pull-request@master
+        with:
+          GITHUB_TOKEN: ${{ github.token }}
+          head: ${{ github.ref }}
+          base: main
+          title: "An automatically created PR"
+
+          
+      - if: ${{ steps.PR.outputs.created == 'true' }}
+        name: Merge pull request
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.TOKEN }}
+          number: ${{ steps.PR.outputs.number }}
